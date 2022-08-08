@@ -18,7 +18,7 @@ export const TokenTable = ({
   loading: boolean;
 }) => {
   console.log({ rows });
-  if (loading) return <Skeleton variant="rectangular" height={118} />;
+  if (loading) return <Skeleton variant="rectangular" height={700} />;
   return (
     <TableContainer component={Paper}>
       <Table style={{ minWidth: 650 }} aria-label="simple table">
