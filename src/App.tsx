@@ -1,15 +1,13 @@
 import React, { FunctionComponent, useState } from "react";
 import "./App.css";
+import "react-loading-skeleton/dist/skeleton.css";
 import { ethers } from "ethers";
 import { TEST_WALLET } from "./constants";
 import { IsTally } from "./components/is-tally/IsTally";
-import { CustomTable } from "./components/table/Table";
-import { tableColumns } from "./utils/table-coulmns";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 import { ConnectWallet } from "./components/connect-wallet/ConnectWallet";
 import { SignInWithEthereum } from "./components/ethereum-sign-in/EthereumSignIn";
 import { FetchBalances } from "./components/fetch-balances/FetchBalances";
+import { TokenTable } from "./components/token-table/TokenTable";
 
 const domain = window.location.host;
 const origin = window.location.origin;
@@ -19,7 +17,7 @@ const signer = provider.getSigner();
 function App() {
   //Local state
   const [walletAddress, setWalletAddress] = useState("");
-  const [tokenRows, setTokenRows] = useState<any>(null);
+  const [tokenRows, setTokenRows] = useState<any>([]);
   const [loading, setLoading] = useState(false);
 
   return (
@@ -47,12 +45,9 @@ function App() {
             />
           </>
         ) : null}
-        <div className="table-container">
-          {loading ? <Skeleton count={20} /> : null}
-          {!tokenRows || loading ? null : (
-            <CustomTable columns={tableColumns} data={tokenRows} />
-          )}
-        </div>
+        {tokenRows.length ? (
+          <TokenTable loading={loading} rows={tokenRows} />
+        ) : null}
       </div>
     </div>
   );
