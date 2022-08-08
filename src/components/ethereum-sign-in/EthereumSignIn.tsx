@@ -1,7 +1,9 @@
 import { ethers } from "ethers";
 import React from "react";
-import { Button } from "../button/Button";
+import { CustomButton } from "../custom-button/CustomButton";
 import { SiweMessage } from "siwe";
+import { Grid } from "@mui/material";
+import { CUSTOM_MESSAGE } from "../../constants";
 
 type SignInWithEthereumType = {
   signer: ethers.providers.JsonRpcSigner;
@@ -34,11 +36,13 @@ export const signInWithEthereum = async ({
 }: SignInWithEthereumType) => {
   const message = createSiweMessage(
     await signer.getAddress(),
-    "Sign in with Ethereum to the app.",
+    CUSTOM_MESSAGE,
     domain,
     origin
   );
-  await signer.signMessage(message);
+  const signature = await signer.signMessage(message);
+
+  localStorage.setItem("signature", signature);
 };
 
 export const SignInWithEthereum = ({
@@ -47,9 +51,12 @@ export const SignInWithEthereum = ({
   origin,
 }: SignInWithEthereumType) => {
   return (
-    <Button
-      label="Sign in with Ethereum"
-      clickHandler={() => signInWithEthereum({ signer, domain, origin })}
-    />
+    <>
+      <CustomButton
+        label="Sign in with Ethereum"
+        clickHandler={() => signInWithEthereum({ signer, domain, origin })}
+      />
+      <div style={{ marginBottom: "40px" }}>{CUSTOM_MESSAGE}</div>
+    </>
   );
 };

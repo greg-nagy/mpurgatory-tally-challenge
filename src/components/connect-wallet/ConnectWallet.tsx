@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import React from "react";
-import { Button } from "../button/Button";
+import { CustomButton } from "../custom-button/CustomButton";
 
 type ConnectWalletType = {
   provider: ethers.providers.Web3Provider;
@@ -17,7 +17,7 @@ export const ConnectWallet = ({
   setWalletAddress,
 }: ConnectWalletType) => {
   return (
-    <Button
+    <CustomButton
       label="Connect Wallet"
       clickHandler={async () => setWalletAddress(await connectWallet(provider))}
     />

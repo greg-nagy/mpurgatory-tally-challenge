@@ -1,8 +1,22 @@
 .App {
-  text-align: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding: 50px;
 min-height: 100%;
+}
+
+.container {
+  text-align: center;
+}
+
+.section {
+  padding: 30px
+}
+
+.wallet-address {
+  min-height: 68px;
+}
+
+.is-tally {
+  min-height: 68px;
 }
 
 .table-container {
