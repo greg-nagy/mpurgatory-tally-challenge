@@ -10,15 +10,7 @@ import {
   Skeleton,
 } from "@mui/material";
 
-export const TokenTable = ({
-  rows,
-  loading,
-}: {
-  rows: any;
-  loading: boolean;
-}) => {
-  console.log({ rows });
-  if (loading) return <Skeleton variant="rectangular" height={700} />;
+export const TokenTable = ({ rows }: { rows: any }) => {
   return (
     <TableContainer component={Paper}>
       <Table style={{ minWidth: 650 }} aria-label="simple table">

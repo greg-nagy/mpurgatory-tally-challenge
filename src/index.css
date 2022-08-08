@@ -7,6 +7,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.quicksand {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.5em;
+}
+
+.quicksand-color {
+  margin-left: 5px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.7em;
+  color:#1776D2;
+  text-shadow: 1px 1px #4f4f4f;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

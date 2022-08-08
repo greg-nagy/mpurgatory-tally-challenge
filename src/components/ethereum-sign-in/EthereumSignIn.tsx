@@ -9,6 +9,7 @@ type SignInWithEthereumType = {
   signer: ethers.providers.JsonRpcSigner;
   domain?: string;
   origin?: string;
+  walletAddress: string;
 };
 
 const createSiweMessage = (
@@ -33,6 +34,7 @@ export const signInWithEthereum = async ({
   signer,
   domain,
   origin,
+  walletAddress,
 }: SignInWithEthereumType) => {
   const message = createSiweMessage(
     await signer.getAddress(),
@@ -42,6 +44,12 @@ export const signInWithEthereum = async ({
   );
   const signature = await signer.signMessage(message);
 
+  const address = ethers.utils.verifyMessage(message, signature);
+
+  console.log({ address });
+
+  if (address !== walletAddress) return alert("Signature cannot be verified");
+
   localStorage.setItem("signature", signature);
 };
 
@@ -49,14 +57,17 @@ export const SignInWithEthereum = ({
   signer,
   domain,
   origin,
+  walletAddress,
 }: SignInWithEthereumType) => {
   return (
     <>
       <CustomButton
         label="Sign in with Ethereum"
-        clickHandler={() => signInWithEthereum({ signer, domain, origin })}
+        clickHandler={() =>
+          signInWithEthereum({ signer, domain, origin, walletAddress })
+        }
       />
-      <div style={{ marginBottom: "40px" }}>{CUSTOM_MESSAGE}</div>
+      {/* <div style={{ marginBottom: "40px" }}>{CUSTOM_MESSAGE}</div> */}
     </>
   );
 };

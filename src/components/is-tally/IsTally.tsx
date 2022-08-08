@@ -6,14 +6,14 @@ export const IsTally: FunctionComponent = () => {
   if ((window as any).ethereum.isTally) {
     return (
       <div>
-        Tally Cash Wallet:{" "}
+        <span className="quicksand">Tally Ho Wallet:</span>
         <CheckIcon style={{ color: "green", verticalAlign: "sub" }} />
       </div>
     );
   } else {
     return (
       <div>
-        Tally Cash Wallet:{" "}
+        <span className="quicksand">Tally Ho Wallet:</span>
         <DoNotDisturbAltIcon style={{ color: "red", verticalAlign: "sub" }} />
       </div>
     );

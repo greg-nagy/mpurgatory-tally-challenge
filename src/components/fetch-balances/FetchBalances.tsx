@@ -43,6 +43,9 @@ export const FetchBalances = ({
     const filteredTokens = tokens.tokenBalances.filter(
       (balance) => balance.tokenBalance !== "0"
     );
+
+    alert("account does not have any tokens");
+
     const metaDataPromises = filteredTokens.map((token) =>
       alchemy.core.getTokenMetadata(token.contractAddress)
     );
