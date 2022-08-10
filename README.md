@@ -1,5 +1,10 @@
 # Tally challenge
 
+## Setup
+
+- npm install
+- copy `.env.defaults` > `.env` and replace alchemy api keys with yours (if you want)
+
 ## Intro
 
 Hello talented but probably nervous human being!
